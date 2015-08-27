@@ -33,12 +33,9 @@ public class Cat {
 	public static void main(String[] args) {
 		/* Do the following things without changing the Cat class */
 		Cat cat = new Cat();
-		// 1. make the Cat meow
 		cat.meow();
-		// 2. get the Cat to print it's name
 		cat.name = "Toby";
 		cat.printName();
-		// 3. kill the Cat!
 		for (int i = 0; i < 20; i++) {
 			cat.kill();
 		}
