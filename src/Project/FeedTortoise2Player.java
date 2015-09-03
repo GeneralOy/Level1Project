@@ -6,7 +6,6 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Label;
 import java.awt.event.KeyEvent;
 import java.util.Random;
-
 import org.jointheleague.graphical.robot.Robot;
 public class FeedTortoise2Player implements KeyEventDispatcher
 {
@@ -16,59 +15,43 @@ public class FeedTortoise2Player implements KeyEventDispatcher
 	int tortoiseLocationY = robot.getY();
 	int x2 = robot2.getY();
 	int y2 = robot2.getY();
-	// 1. Decide where to put the food by setting these variables
 	int foodLocationX;
 	int foodLocationY;
-	// If the food does not show up, you need to switch to Java 1.6
 
 	// 2. Choose a character for your food or leave it as *
 	Component food = new Label("*");
 
 	private void goUp()
 	{
-		// 3. Make the Tortoise move up the screen
 		robot.moveTo(robot.getX(), robot.getY() - 20);
 	}
-
 	private void goDown()
 	{
-		// 4. Make the Tortoise move down the screen
 		robot.moveTo(robot.getX(), robot.getY() + 20);
 	}
-
 	private void goLeft()
 	{
 		robot.moveTo(robot.getX() - 20, robot.getY());
-		// 5. make the tortoise move left. Hint: Make sure to end with the Tortoise facing UP.
 	}
-
 	private void goRight()
 	{
 		robot.moveTo(robot.getX() + 20, robot.getY());
-		// 6. make the tortoise move right
 	}
 	private void goUp2()
 	{
-		// 3. Make the Tortoise move up the screen
 		robot2.moveTo(robot2.getX(), robot2.getY() - 20);
 	}
-
 	private void goDown2()
 	{
-		// 4. Make the Tortoise move down the screen
 		robot2.moveTo(robot2.getX(), robot2.getY() + 20);
 	}
-
 	private void goLeft2()
 	{
 		robot2.moveTo(robot2.getX() + 20, robot2.getY());
-		// 5. make the tortoise move left. Hint: Make sure to end with the Tortoise facing UP.
 	}
-
 	private void goRight2()
 	{
 		robot2.moveTo(robot2.getX() - 20, robot2.getY());
-		// 6. make the tortoise move right
 	}
 	private void checkIfFoodFound() throws Exception
 	{
@@ -76,7 +59,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher
 		this.tortoiseLocationY = robot.getY();
 		this.x2 = robot2.getY();
 		this.y2 = robot2.getY();
-
+		
 		// 7. if tortoise is near the food
 			// say something. Hint: Runtime.getRuntime().exec("say yum")
 	}
