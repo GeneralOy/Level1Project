@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Label;
-import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
@@ -129,7 +128,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 		return processEvent();
 	}
 
-	private void moveFoodUp() {
+	/**private void moveFoodUp() {
 		System.out.println("Move food up!");
 		// 9. decrement foodLocationY
 
@@ -143,7 +142,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 	}
 
 	// TurtlePanel window = Tortoise.getBackgroundWindow();
-
+	**/
 	public static void main(String[] args) {
 		FeedTortoise2Player feeder = new FeedTortoise2Player();
 		feeder.controlTheTortoise();
