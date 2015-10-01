@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 	Dimension SMALL = new Dimension(200, 200);
 	// Complete steps 1 - 7 before you test
 	JFrame frame;
+	JPanel panel;
 	HashMap<Integer, String> images = new HashMap<Integer, String>();
 	private int imageIndex;
 	private int tries = 0;
@@ -30,10 +32,14 @@ public class SimonSaysRecipe extends KeyAdapter {
 	Date timeAtStart;
 
 	private void makeAlbum() {
-		images.put(new Integer(KeyEvent.VK_A), "http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_A.png");
-		images.put(new Integer(KeyEvent.VK_C), "http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_C.png");
-		images.put(new Integer(KeyEvent.VK_P), "http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_P.png");
-		images.put(new Integer(KeyEvent.VK_I), "http://www.clipartpal.com/_thumbs/pd/computer/computer/computer_key_I.png");
+		images.put(new Integer(KeyEvent.VK_A), "A.png");
+		//*http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_A.png
+		images.put(new Integer(KeyEvent.VK_C), "C.png");
+		//*http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_C.png
+		images.put(new Integer(KeyEvent.VK_P), "P.png");
+		//*http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_P.png
+		images.put(new Integer(KeyEvent.VK_I), "I.png");
+		//*http://www.clipartpal.com/_thumbs/pd/computer/computer/computer_key_I.png
 		JOptionPane.showConfirmDialog(null,"Press the matching keys when Simon says!");
 		showImage();
 	}
@@ -58,13 +64,13 @@ public class SimonSaysRecipe extends KeyAdapter {
 	}
 
 	private void showImage() {
-		// 5. initialize your frame to a new JFrame()
 		frame = new JFrame();
-		// 6. set the frame to visible
+		panel = new JPanel();
 		frame.setVisible(true);
 		frame.add(getNextRandomImage());
 		frame.setSize(BIG);
-		
+		frame.addKeyListener(this);
+		frame.pack();
 		// 9. add a key listener to the frame
 
 		// 10. Use the speak method to either say "Simon says press this key" or
