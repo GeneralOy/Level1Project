@@ -23,8 +23,8 @@ public class SimonSaysRecipe extends KeyAdapter {
 	Dimension BIG = new Dimension(400, 400);
 	Dimension SMALL = new Dimension(200, 200);
 	// Complete steps 1 - 7 before you test
-	JFrame frame;
-	JPanel panel;
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
 	HashMap<Integer, String> images = new HashMap<Integer, String>();
 	private int imageIndex;
 	private int tries = 0;
@@ -65,13 +65,14 @@ public class SimonSaysRecipe extends KeyAdapter {
 	}
 
 	private void showImage() {
-		frame = new JFrame();
-		panel = new JPanel();
 		frame.setVisible(true);
 		frame.add(getNextRandomImage());
+		System.out.println("1");
 		frame.setSize(BIG);
+		System.out.println("2");
 		frame.addKeyListener(this);
 		frame.pack();
+		System.out.println("3");
 		// 9. add a key listener to the frame
 
 		// 10. Use the speak method to either say "Simon says press this key" or
