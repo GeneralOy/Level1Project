@@ -42,6 +42,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 		//*http://www.clipartpal.com/_thumbs/pd/computer/computer/computer_key_I.png
 		JOptionPane.showConfirmDialog(null,"Press the matching keys when Simon says!");
 		showImage();
+		System.out.println("done");
 	}
 
 	public void keyPressed(KeyEvent e) {
