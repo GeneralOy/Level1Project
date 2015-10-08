@@ -17,7 +17,7 @@ import org.jointheleague.graphical.robot.Robot;
 
 public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 	public static boolean timerDone = false;
-	static Timer timer1 = new Timer(1500, null);
+	 Timer timer1 = new Timer(15000, this);
 	public static boolean ready = false;
 	public static int timer = 0;
 	public boolean foodFound;
@@ -39,7 +39,6 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 			robot2.setY(randomTPY);
 			randomTPX = new Random().nextInt(1500);
 			randomTPY = new Random().nextInt(900);
-			timerDone = false;
 		}
 	}
 
@@ -171,7 +170,6 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 			robot.setY(500);
 			robot2.setX(0);
 			robot2.setY(250);
-			timer1.start();
 			ready = true;
 		}
 	}
@@ -180,6 +178,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager()
 				.addKeyEventDispatcher(this);
 		robot2.changeRobot("/Users/Guest/Desktop/Level1Project/Robot2.5");
+		timer1.start();
 	}
 
 	private boolean processEvent() {
@@ -191,9 +190,19 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 		return false;
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed() {
+		if(timerDone = false){
 		System.out.println("Timer");
 		timerDone = true;
+		}else if(timerDone = true){
+			timerDone = false;
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("timer is done");
 	}
 
 }
