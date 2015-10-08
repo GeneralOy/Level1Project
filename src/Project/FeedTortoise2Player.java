@@ -5,14 +5,19 @@ import java.awt.Component;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import org.jointheleague.graphical.robot.Robot;
 
-public class FeedTortoise2Player implements KeyEventDispatcher {
+public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
+	public static boolean timerDone = false;
+	static Timer timer1 = new Timer(1500, null);
 	public static boolean ready = false;
 	public static int timer = 0;
 	public boolean foodFound;
@@ -25,19 +30,17 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 	public static boolean caught = false;
 	int randomTPX = new Random().nextInt(900);
 	int randomTPY = new Random().nextInt(500);
-	// 2. Choose a character for your food or leave it as * 
+	// 2. Choose a character for your food or leave it as *
 	Component food = new Label("*");
 
 	private void telePort() {
-		// if(timer < 5){
-		// timer += 1;
-		// }else if(timer > 5){
-		robot2.setX(randomTPX);
-		robot2.setY(randomTPY);
-		randomTPX = new Random().nextInt(1500);
-		randomTPY = new Random().nextInt(900);
-		// timer = 0;
-		// }
+		if (timerDone) {
+			robot2.setX(randomTPX);
+			robot2.setY(randomTPY);
+			randomTPX = new Random().nextInt(1500);
+			randomTPY = new Random().nextInt(900);
+			timerDone = false;
+		}
 	}
 
 	private void goUp() {
@@ -78,44 +81,44 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 			y2 = robot2.getY();
 			int x1 = robot.getX();
 			int y1 = robot.getY();
-			if(caught == false){
-			if ((x2 + 20) > (x1 - 50) && (x2 - 20) < (x1 + 50)) {
-				if ((y2 + 20) > (y1 - 50) && (y2 - 20) < (y1 + 50)) {
-					System.out.println("you caught him!");
-					foodFound = true;
-					JOptionPane.showMessageDialog(null, "Blue Wins!");
-					caught = true;
+			if (caught == false) {
+				if ((x2 + 20) > (x1 - 50) && (x2 - 20) < (x1 + 50)) {
+					if ((y2 + 20) > (y1 - 50) && (y2 - 20) < (y1 + 50)) {
+						System.out.println("you caught him!");
+						foodFound = true;
+						JOptionPane.showMessageDialog(null, "Blue Wins!");
+						caught = true;
+					}
+				} else {
+					foodFound = false;
 				}
-			} else {
-				foodFound = false;
 			}
-		}
 		}
 	}
 
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if (e.getID() == KeyEvent.KEY_PRESSED) {
-			if(readyToStartPlay()){
+			if (readyToStartPlay()) {
 				checkIfFoodFound();
-			
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-				goRight();
-			if (e.getKeyCode() == KeyEvent.VK_LEFT)
-				goLeft();
-			if (e.getKeyCode() == KeyEvent.VK_UP)
-				goUp();
-			if (e.getKeyCode() == KeyEvent.VK_DOWN)
-				goDown();
-			if (e.getKeyCode() == KeyEvent.VK_A)
-				goRight2();
-			if (e.getKeyCode() == KeyEvent.VK_D)
-				goLeft2();
-			if (e.getKeyCode() == KeyEvent.VK_W)
-				goUp2();
-			if (e.getKeyCode() == KeyEvent.VK_S)
-				goDown2();
-			if (e.getKeyCode() == KeyEvent.VK_SPACE)
-				telePort();
+
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+					goRight();
+				if (e.getKeyCode() == KeyEvent.VK_LEFT)
+					goLeft();
+				if (e.getKeyCode() == KeyEvent.VK_UP)
+					goUp();
+				if (e.getKeyCode() == KeyEvent.VK_DOWN)
+					goDown();
+				if (e.getKeyCode() == KeyEvent.VK_A)
+					goRight2();
+				if (e.getKeyCode() == KeyEvent.VK_D)
+					goLeft2();
+				if (e.getKeyCode() == KeyEvent.VK_W)
+					goUp2();
+				if (e.getKeyCode() == KeyEvent.VK_S)
+					goDown2();
+				if (e.getKeyCode() == KeyEvent.VK_SPACE)
+					telePort();
 			}
 			/**
 			 * Hint: "e.getKeyCode() == KeyEvent.VK_T" is TRUE when T is pressed
@@ -168,6 +171,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 			robot.setY(500);
 			robot2.setX(0);
 			robot2.setY(250);
+			timer1.start();
 			ready = true;
 		}
 	}
@@ -185,6 +189,11 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Timer");
+		timerDone = true;
 	}
 
 }
