@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
 import org.jointheleague.graphical.robot.Robot;
 
 public class FeedTortoise2Player implements KeyEventDispatcher {
-	public static int x = 0;
+	public static boolean ready = false;
+	public static int timer = 0;
 	public boolean foodFound;
 	public static Robot robot = new Robot();
 	public static Robot robot2 = new Robot();
@@ -21,16 +22,22 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 	int tortoiseLocationY = robot.getY();
 	int x2 = robot2.getX();
 	int y2 = robot2.getY();
+	public static boolean caught = false;
 	int randomTPX = new Random().nextInt(900);
 	int randomTPY = new Random().nextInt(500);
-	// 2. Choose a character for your food or leave it as *
+	// 2. Choose a character for your food or leave it as * 
 	Component food = new Label("*");
 
 	private void telePort() {
+		// if(timer < 5){
+		// timer += 1;
+		// }else if(timer > 5){
 		robot2.setX(randomTPX);
 		robot2.setY(randomTPY);
 		randomTPX = new Random().nextInt(1500);
 		randomTPY = new Random().nextInt(900);
+		// timer = 0;
+		// }
 	}
 
 	private void goUp() {
@@ -66,28 +73,31 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 	}
 
 	private void checkIfFoodFound() {
-		if(x == 0){
+		if (ready) {
 			x2 = robot2.getX();
 			y2 = robot2.getY();
 			int x1 = robot.getX();
 			int y1 = robot.getY();
+			if(caught == false){
 			if ((x2 + 20) > (x1 - 50) && (x2 - 20) < (x1 + 50)) {
 				if ((y2 + 20) > (y1 - 50) && (y2 - 20) < (y1 + 50)) {
 					System.out.println("you caught him!");
 					foodFound = true;
 					JOptionPane.showMessageDialog(null, "Blue Wins!");
+					caught = true;
 				}
 			} else {
 				foodFound = false;
 			}
 		}
+		}
 	}
 
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if (e.getID() == KeyEvent.KEY_PRESSED) {
-			if(x > 2){
+			if(readyToStartPlay()){
 				checkIfFoodFound();
-			}
+			
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 				goRight();
 			if (e.getKeyCode() == KeyEvent.VK_LEFT)
@@ -106,6 +116,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 				goDown2();
 			if (e.getKeyCode() == KeyEvent.VK_SPACE)
 				telePort();
+			}
 			/**
 			 * Hint: "e.getKeyCode() == KeyEvent.VK_T" is TRUE when T is pressed
 			 * 8. if the W key is pressed, call the method moveFoodUp();
@@ -130,37 +141,41 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 		return processEvent();
 	}
 
-	/**private void moveFoodUp() {
-		System.out.println("Move food up!");
-		// 9. decrement foodLocationY
-
-		// 10. call the moveFood() method
-
+	public static boolean readyToStartPlay() {
+		System.out.println("x");
+		return true;
 	}
 
-	private void moveFoodToARandomLocation() {
-		// foodLocationX = new Random().nextInt(window.getSize().width);
-		// foodLocationY = new Random().nextInt(window.getSize().height);
-	}
-
-	// TurtlePanel window = Tortoise.getBackgroundWindow();
-	**/
+	/**
+	 * private void moveFoodUp() { System.out.println("Move food up!"); // 9.
+	 * decrement foodLocationY
+	 * 
+	 * // 10. call the moveFood() method
+	 * 
+	 * }
+	 * 
+	 * private void moveFoodToARandomLocation() { // foodLocationX = new
+	 * Random().nextInt(window.getSize().width); // foodLocationY = new
+	 * Random().nextInt(window.getSize().height); }
+	 * 
+	 * // TurtlePanel window = Tortoise.getBackgroundWindow();
+	 **/
 	public static void main(String[] args) {
 		FeedTortoise2Player feeder = new FeedTortoise2Player();
 		feeder.controlTheTortoise();
-		if(x < 2){
-			x += 1;
+		if (ready == false) {
 			robot.setX(500);
 			robot.setY(500);
 			robot2.setX(0);
 			robot2.setY(250);
+			ready = true;
 		}
 	}
 
 	private void controlTheTortoise() {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager()
 				.addKeyEventDispatcher(this);
-		robot2.changeRobot("/Users/Guest/Desktop/Level1Project/Robot2.3");
+		robot2.changeRobot("/Users/Guest/Desktop/Level1Project/Robot2.5");
 	}
 
 	private boolean processEvent() {
