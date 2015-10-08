@@ -85,7 +85,9 @@ public class FeedTortoise2Player implements KeyEventDispatcher {
 
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if (e.getID() == KeyEvent.KEY_PRESSED) {
+			if(x > 2){
 				checkIfFoodFound();
+			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 				goRight();
 			if (e.getKeyCode() == KeyEvent.VK_LEFT)
