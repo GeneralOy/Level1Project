@@ -34,6 +34,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 	Component food = new Label("*");
 
 	private void telePort() {
+		timer1.start();
 		if (timerDone) {
 			robot2.setX(randomTPX);
 			robot2.setY(randomTPY);
@@ -178,7 +179,6 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 		KeyboardFocusManager.getCurrentKeyboardFocusManager()
 				.addKeyEventDispatcher(this);
 		robot2.changeRobot("/Users/Guest/Desktop/Level1Project/Robot2.5");
-		timer1.start();
 	}
 
 	private boolean processEvent() {
@@ -190,19 +190,19 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 		return false;
 	}
 
-	public void actionPerformed() {
-		if(timerDone = false){
-		System.out.println("Timer");
-		timerDone = true;
-		}else if(timerDone = true){
-			timerDone = false;
-		}
-	}
+	/*public void actionPerformed() {
+
+	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("timer is done");
+		if(timerDone = false){
+			System.out.println("Timer");
+			timerDone = true;
+			}else if(timerDone = true){
+				timerDone = false;
+			}
 	}
 
 }
