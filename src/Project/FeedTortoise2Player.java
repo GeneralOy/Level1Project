@@ -197,12 +197,7 @@ public class FeedTortoise2Player implements KeyEventDispatcher, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(timerDone = false){
-			System.out.println("Timer");
-			timerDone = true;
-			}else if(timerDone = true){
-				timerDone = false;
-			}
+		timerDone = true;
 	}
 
 }
