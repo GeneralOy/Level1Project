@@ -2,8 +2,10 @@ package Project;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,25 +24,29 @@ public class SimonSaysRecipe extends KeyAdapter {
 
 	Dimension BIG = new Dimension(400, 400);
 	Dimension SMALL = new Dimension(200, 200);
-	// Complete steps 1 - 7 before you test
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	HashMap<Integer, String> images = new HashMap<Integer, String>();
 	private int imageIndex;
 	private int tries = 0;
 	private int simonSays = 0;
+	public int points = 0;
+	private String keyString;
+	public KeyListener keyListener1;
 	Date timeAtStart;
 
 	private void makeAlbum() {
+		System.out.println(KeyEvent.VK_I);
 		images.put(new Integer(KeyEvent.VK_A), "A.png");
-		//*http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_A.png
+		// *http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_A.png
 		images.put(new Integer(KeyEvent.VK_C), "C.png");
-		//*http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_C.png
+		// *http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_C.png
 		images.put(new Integer(KeyEvent.VK_P), "P.png");
-		//*http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_P.png
+		// *http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_P.png
 		images.put(new Integer(KeyEvent.VK_I), "I.png");
-		//*http://www.clipartpal.com/_thumbs/pd/computer/computer/computer_key_I.png
-		JOptionPane.showConfirmDialog(null,"Press the matching keys when Simon says!");
+		// *http://www.clipartpal.com/_thumbs/pd/computer/computer/computer_key_I.png
+		JOptionPane.showConfirmDialog(null,
+				"Press the matching keys when Simon says!");
 		showImage();
 		System.out.println("done");
 	}
@@ -49,45 +55,60 @@ public class SimonSaysRecipe extends KeyAdapter {
 		int keyCode = e.getKeyCode();
 		// 16. make a points variable to track the score. tell the user their
 		// score at the end.
-		// 17. if the keyCode matches the imageIndex and "Simon says..."
-		// increase their score
+		if (keyCode == imageIndex) {
+			points += 1;
+		}
 		// 18. if the keyCode doesn't match the imageIndex and
 		// "Simon didn't say..." increase their score
 		// 19. Use the speak method to tell the user if they were correct or not
 		// 13. increment tries by 1
-
+		tries += 1;
 		// 14. if tries is greater than 9 (or however many you want)
-
-		// 15. exit the program
-		// 11. dispose of the frame
-
-		// 12. call the method to show an image
+		if (tries > 10) {
+			System.exit(10);
+		} else {
+			tries += 1;
+		}
+		frame.dispose();
+		frame.removeKeyListener(this);
+		tries = 0;
+		System.out.println("Loaded Part 2");
+		showImage();
 	}
 
 	private void showImage() {
 		frame.setVisible(true);
 		frame.add(getNextRandomImage());
-		System.out.println("1");
 		frame.setSize(BIG);
-		System.out.println("2");
+		System.out.println("loaded part 1");
 		frame.addKeyListener(this);
 		frame.pack();
-		System.out.println("3");
-		// 9. add a key listener to the frame
-
-		// 10. Use the speak method to either say "Simon says press this key" or
-		// "Press this key"
-		// Hint: use the simonSays int and a random number
+		speak("" + keyString);
 	}
 
 	private Component getNextRandomImage() {
 		this.imageIndex = new Random().nextInt(4) + 37;
+		if (imageIndex == 37) {
+			this.imageIndex = 65;
+			keyString = "A";
+		} else if (imageIndex == 38) {
+			this.imageIndex = 67;
+			keyString = "C";
+		} else if (imageIndex == 39) {
+			this.imageIndex = 80;
+			keyString = "P";
+		} else if (imageIndex == 40) {
+			this.imageIndex = 73;
+			keyString = "I";
+		}
+		System.out.println(imageIndex);
 		return loadImage(images.get(imageIndex));
 	}
 
 	private JLabel loadImage(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
+		System.out.println(fileName);
 		return new JLabel(icon);
 	}
 
