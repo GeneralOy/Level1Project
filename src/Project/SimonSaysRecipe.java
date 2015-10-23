@@ -69,7 +69,6 @@ public class SimonSaysRecipe extends KeyAdapter {
 		} else {
 			tries += 1;
 		}
-		frame.removeAll();
 		frame.dispose();
 		frame.removeKeyListener(this);
 		tries = 0;
