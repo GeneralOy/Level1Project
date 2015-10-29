@@ -47,7 +47,9 @@ public class SimonSaysRecipe extends KeyAdapter {
 		// *http://www.clipartpal.com/_thumbs/pd/computer/computer/computer_key_I.png
 		JOptionPane.showConfirmDialog(null,
 				"Press the matching keys when Simon says!");
+		timeAtStart = new Date();
 		showImage();
+		speak("Simon Says" + keyString);
 		System.out.println("done");
 	}
 
@@ -68,6 +70,11 @@ public class SimonSaysRecipe extends KeyAdapter {
 		}
 		if (tries > 9) {
 			speak("Your total score was " + points + "out of 11");
+			Date timeAtEnd = new Date();
+			System.out
+					.println((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000 + " seconds");
+			speak(timeAtEnd.getTime() - timeAtStart.getTime() / 1000 + " seconds");
+			System.out.println(timeAtEnd);
 			System.exit(1);
 		} else if (tries <= 9) {
 			tries += 1;
@@ -82,6 +89,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 		frame.removeKeyListener(this);
 		System.out.println("Loaded Part 2");
 		showImage();
+		//speak("Simon Says" + keyString);
 	}
 
 	private void showImage() {
@@ -92,7 +100,6 @@ public class SimonSaysRecipe extends KeyAdapter {
 		System.out.println("loaded part 1");
 		frame.addKeyListener(this);
 		frame.pack();
-		speak("Simon Says" + keyString);
 	}
 
 	private Component getNextRandomImage() {
