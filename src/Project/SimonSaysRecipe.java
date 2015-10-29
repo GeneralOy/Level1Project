@@ -60,15 +60,16 @@ public class SimonSaysRecipe extends KeyAdapter {
 		if (keyCode == imageIndex) {
 			points += 1;
 			speak("correct");
-			//tries += 1;
+			// tries += 1;
 		} else if (keyCode > imageIndex || keyCode < imageIndex) {
-			points += 1;
+			// points += 1;
 			speak("incorrect");
-			//tries += 1;
+			// tries += 1;
 		}
-		if (tries >= 10) {
+		if (tries > 9) {
+			speak("Your total score was " + points + "out of 11");
 			System.exit(1);
-		} else if (tries < 10) {
+		} else if (tries <= 9) {
 			tries += 1;
 		}
 		/**
@@ -79,7 +80,6 @@ public class SimonSaysRecipe extends KeyAdapter {
 		frame.dispose();
 
 		frame.removeKeyListener(this);
-		tries = 0;
 		System.out.println("Loaded Part 2");
 		showImage();
 	}
@@ -92,7 +92,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 		System.out.println("loaded part 1");
 		frame.addKeyListener(this);
 		frame.pack();
-		speak("" + keyString);
+		speak("Simon Says" + keyString);
 	}
 
 	private Component getNextRandomImage() {
