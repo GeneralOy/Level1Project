@@ -53,23 +53,31 @@ public class SimonSaysRecipe extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		// 16. make a points variable to track the score. tell the user their
-		// score at the end.
+		/**
+		 * 16. make a points variable to track the score. tell the user their //
+		 * score at the end.
+		 **/
 		if (keyCode == imageIndex) {
 			points += 1;
+			speak("correct");
+			//tries += 1;
+		} else if (keyCode > imageIndex || keyCode < imageIndex) {
+			points += 1;
+			speak("incorrect");
+			//tries += 1;
 		}
-		// 18. if the keyCode doesn't match the imageIndex and
-		// "Simon didn't say..." increase their score
-		// 19. Use the speak method to tell the user if they were correct or not
-		// 13. increment tries by 1
-		tries += 1;
-		// 14. if tries is greater than 9 (or however many you want)
-		if (tries > 10) {
-			System.exit(10);
-		} else {
+		if (tries >= 10) {
+			System.exit(1);
+		} else if (tries < 10) {
 			tries += 1;
 		}
+		/**
+		 * 18. if the keyCode doesn't match the imageIndex and //
+		 * "Simon didn't say..." increase their score // 19. Use the speak
+		 * method to tell the user if they were correct or not
+		 **/
 		frame.dispose();
+
 		frame.removeKeyListener(this);
 		tries = 0;
 		System.out.println("Loaded Part 2");
@@ -77,6 +85,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 	}
 
 	private void showImage() {
+		frame = new JFrame();
 		frame.setVisible(true);
 		frame.add(getNextRandomImage());
 		frame.setSize(BIG);
