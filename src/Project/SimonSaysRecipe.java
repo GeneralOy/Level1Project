@@ -71,9 +71,10 @@ public class SimonSaysRecipe extends KeyAdapter {
 		if (tries > 9) {
 			speak("Your total score was " + points + "out of 11");
 			Date timeAtEnd = new Date();
-			System.out
-					.println((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000 + " seconds");
-			speak(timeAtEnd.getTime() - timeAtStart.getTime() / 1000 + " seconds");
+			System.out.println((timeAtEnd.getTime() - timeAtStart.getTime())
+					/ 1000 + " seconds");
+			speak("" + (timeAtEnd.getTime() - timeAtStart.getTime()) / 1000
+					+ " seconds");
 			System.out.println(timeAtEnd);
 			System.exit(1);
 		} else if (tries <= 9) {
@@ -89,7 +90,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 		frame.removeKeyListener(this);
 		System.out.println("Loaded Part 2");
 		showImage();
-		//speak("Simon Says" + keyString);
+		// speak("Simon Says" + keyString);
 	}
 
 	private void showImage() {
