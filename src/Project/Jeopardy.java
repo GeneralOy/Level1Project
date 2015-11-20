@@ -35,12 +35,19 @@ public class Jeopardy implements ActionListener {
 	private JButton thirdButton;
 	private JButton fourthButton;
 	private JButton fifthButton;
-	private JButton sixthButton;
-	private JButton seventhButton;
+	private JButton firstButton2;
+	private JButton secondButton2;
+	private JButton thirdButton2;
+	private JButton fourthButton2;
+	private JButton fifthButton2;
+	// private JButton sixthButton;
+	// private JButton seventhButton;
 	public JPanel header;
+	public JPanel header2;
 
-	private JPanel quizPanel;
+	private JPanel HaloPanel;
 	private JPanel quizPanel2;
+	private JPanel mainPanel;
 	int score = 0;
 	JLabel scoreBox = new JLabel("0");
 	int buttonCount = 0;
@@ -51,10 +58,14 @@ public class Jeopardy implements ActionListener {
 
 	private void start() {
 		JFrame frame = new JFrame();
-		quizPanel = new JPanel();
+		HaloPanel = new JPanel();
 		quizPanel2 = new JPanel();
+		mainPanel = new JPanel();
 		frame.setLayout(new BorderLayout());
-
+		frame.add(mainPanel);
+		mainPanel.setLayout(new GridLayout(1, 2));
+		mainPanel.add(HaloPanel, 0);
+		mainPanel.add(quizPanel2, 1);
 		/** 1. Make the frame show up */
 		/** 2. Give your frame a title */
 		/**
@@ -79,35 +90,40 @@ public class Jeopardy implements ActionListener {
 		 */
 		/** 10. Add the secondButton to the quizPanel */
 		frame.setVisible(true);
-		frame.setTitle("Jeopardy! 1 Player");
+		frame.setTitle("Video Game Jeopardy!");
 		header = createHeader("Halo Trivia");
-		quizPanel.add(header);
-		frame.add(quizPanel);
+		HaloPanel.add(header);
 		firstButton = createButton("100");
-		quizPanel.add(firstButton);
+		HaloPanel.add(firstButton);
 		secondButton = createButton("200");
-		quizPanel.add(secondButton);
+		HaloPanel.add(secondButton);
 		thirdButton = createButton("300");
-		quizPanel.add(thirdButton);
+		HaloPanel.add(thirdButton);
 		fourthButton = createButton("400");
-		quizPanel.add(fourthButton);
+		HaloPanel.add(fourthButton);
 		fifthButton = createButton("500");
-		quizPanel.add(fifthButton);
-		//sixthButton = createButton("600");
-		//seventhButton = createButton("700");
+		HaloPanel.add(fifthButton);
+		//HaloPanel.setBackground(Color.RED);
+		header2 = createHeader("Minecraft Trivia");
+		quizPanel2.add(header2);
+		mainPanel.add(HaloPanel, 0);
+		firstButton2 = createButton("100");
+		quizPanel2.add(firstButton2);
+		secondButton2 = createButton("200");
+		quizPanel2.add(secondButton2);
+		thirdButton2 = createButton("300");
+		quizPanel2.add(thirdButton2);
+		fourthButton2 = createButton("400");
+		quizPanel2.add(fourthButton2);
+		fifthButton2 = createButton("500");
+		quizPanel2.add(fifthButton2);
 		/** 11. Add action listeners to the buttons (2 lines of code) */
-		firstButton.addActionListener(this);
-		secondButton.addActionListener(this);
-		thirdButton.addActionListener(this);
-		fourthButton.addActionListener(this);
-		fifthButton.addActionListener(this);
-		//sixthButton.addActionListener(this);
-		//seventhButton.addActionListener(this);
-
-		/** 12. Fill in the actionPerformed() method below*/
+		//quizPanel2.setBackground(Color.BLUE);
+		/** 12. Fill in the actionPerformed() method below */
 
 		frame.pack();
-		quizPanel.setLayout(new GridLayout(buttonCount + 1, 3));
+		HaloPanel.setLayout(new GridLayout(buttonCount + 1, 3));
+		quizPanel2.setLayout(new GridLayout(buttonCount + 1, 3));
 		frame.add(makeScorePanel(), BorderLayout.NORTH);
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().height,
 				Toolkit.getDefaultToolkit().getScreenSize().width);
@@ -129,6 +145,7 @@ public class Jeopardy implements ActionListener {
 		JButton button1 = new JButton();
 		/** Set the text of the button to the dollarAmount */
 		button1.setText(dollarAmount + "$");
+		button1.addActionListener(this);
 		/** Increment the buttonCount (this should make the layout vertical) */
 		buttonCount += 1;
 		/** Return your new button instead of the temporary button */
@@ -168,10 +185,52 @@ public class Jeopardy implements ActionListener {
 			fourthButton.setText("Question Completed");
 			fourthButton.setBackground(Color.red);
 			fourthButton.setForeground(Color.RED);
-		}else if ((JButton) arg0.getSource() == fifthButton) {
+		} else if ((JButton) arg0.getSource() == fifthButton) {
 			System.out.println("Fourth Button = " + (JButton) arg0.getSource());
-			askQuestion("Special question! What is the designation of the assault rifle in Halo 4? List the FULL designation", "MA5D Individual Combat Weapon System",
-					1000);
+			// askQuestion("Special question! What is the name of the assault
+			// rifle in Halo 4?", "MA5D Assault Rifle",1000);
+			askQuestion(
+					"Special question! What is the name of the only other playable Spartan character before Halo 5?",
+					"Noble 6", 1000);
+			fifthButton.setText("Question Completed");
+			fifthButton.setBackground(Color.red);
+			fifthButton.setForeground(Color.RED);
+		} else if ((JButton) arg0
+				.getSource() == firstButton2) { /**
+												 * Questions on second panel
+												 * start here
+												 **/
+			System.out.println("First Button = " + (JButton) arg0.getSource());
+			askQuestion("What is the most basic enemy in Minecraft?", "Zombie", 100);
+			firstButton.setText("Question Completed");
+			firstButton.setBackground(Color.red);
+			firstButton.setForeground(Color.RED);
+		} else if ((JButton) arg0.getSource() == secondButton) {
+			System.out.println("Second Button = " + (JButton) arg0.getSource());
+			askQuestion("What are the two bosses in Minecraft? Name them alphabetically", "Ender Dragon, The Wither",
+					200);
+			secondButton.setText("Question Completed");
+			secondButton.setBackground(Color.red);
+			secondButton.setForeground(Color.RED);
+		} else if ((JButton) arg0.getSource() == thirdButton) {
+			System.out.println("Third Button = " + (JButton) arg0.getSource());
+			askQuestion(
+					"What is the order of tool/armor progression in Minecraft? Start from lowest and go to highest; enchantments not included",
+					"Wood, stone, iron, gold, diamond", 300);
+			thirdButton.setText("Question Completed");
+			thirdButton.setBackground(Color.red);
+			thirdButton.setForeground(Color.RED);
+		} else if ((JButton) arg0.getSource() == fourthButton) {
+			System.out.println("Fourth Button = " + (JButton) arg0.getSource());
+			askQuestion("What is the name of the original Minecraft skin?", "Steve", 400);
+			fourthButton.setText("Question Completed");
+			fourthButton.setBackground(Color.red);
+			fourthButton.setForeground(Color.RED);
+		} else if ((JButton) arg0.getSource() == fifthButton) {
+			System.out.println("Fourth Button = " + (JButton) arg0.getSource());
+			// askQuestion("Special question! What is the name of the assault
+			// rifle in Halo 4?", "MA5D Assault Rifle",1000);
+			askQuestion("What update for Minecraft added ocean temples??", "1.8", 500);
 			fifthButton.setText("Question Completed");
 			fifthButton.setBackground(Color.red);
 			fifthButton.setForeground(Color.RED);
@@ -204,10 +263,12 @@ public class Jeopardy implements ActionListener {
 			score += prizeMoney;
 			updateScore(0);
 			JOptionPane.showMessageDialog(null, "Correct! Your score is now " + score);
+			playCorrect();
 		} else {
 			score -= prizeMoney;
 			updateScore(0);
 			JOptionPane.showMessageDialog(null, "Incorrect! Your score is now " + score);
+			playWrong();
 		}
 		/** Increase the score by the prizeMoney */
 
@@ -228,7 +289,29 @@ public class Jeopardy implements ActionListener {
 	public void playJeopardyTheme() {
 		try {
 			AudioInputStream audioInputStream = AudioSystem
-					.getAudioInputStream(new File("/Users/League/Google Drive/league-sounds/jeopardy.wav"));
+					.getAudioInputStream(new File("/Users/League/Google Drive/league-sounds/batman.wav"));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	public void playCorrect() {
+		try {
+			AudioInputStream audioInputStream = AudioSystem
+					.getAudioInputStream(new File("/Users/League/Google Drive/league-sounds/right.wav"));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	public void playWrong() {
+		try {
+			AudioInputStream audioInputStream = AudioSystem
+					.getAudioInputStream(new File("/Users/League/Google Drive/league-sounds/wrong.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.start();
