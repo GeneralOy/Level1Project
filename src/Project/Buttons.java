@@ -10,7 +10,9 @@ public class Buttons {
 	private static JButton nastyButton = new JButton();
 	public static void main(String[] args) {
 		frame.add(mainPanel);
+		frame.setVisible(true);
 		mainPanel.setLayout(GridLayout(1,2));
-		mainPanel.add(comp)
+		mainPanel.add(nastyButton);
+		frame.pack();
 	}
 }
