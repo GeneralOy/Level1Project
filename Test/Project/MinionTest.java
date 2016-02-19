@@ -48,9 +48,10 @@ public class MinionTest {
 
 	@Test
 	public void testGetters() {
-		Minion stuart = new Minion("Stuart", 1, "yellow", "");
-		
+		Minion stuart = new Minion("Stuart", 1, "yellow", "Ezio Auditore Firenze");
+
 		assertEquals("Stuart", stuart.getName());
+		assertEquals("Ezio Auditore Firenze", stuart.getMaster());
 	}
 
 }
