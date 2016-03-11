@@ -28,6 +28,7 @@ public class MagicBox extends JPanel implements Runnable {
 
 	public static void main(String[] args) throws Exception {
 		SwingUtilities.invokeLater(new MagicBox());
+		// JOptionPane.showMessageDialog(null, keyEvent.getX() + "," + keyEvent.getY())
 	}
 
 	@Override
