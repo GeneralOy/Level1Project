@@ -54,8 +54,8 @@ public class BookOfIllusions extends MouseAdapter {
 		frame1.pack();
 		/** 11. Print "clicked!" to the console when the mouse is pressed*/
 		/** 12. remove everything from the frame that was added earlier*/
-		/* 13. load a new image like before (this is more than one line of code)*/
-		/* 14. pack the frame*/
+		/** 13. load a new image like before (this is more than one line of code)*/
+		/** 14. pack the frame*/
 	}
 
 	/*[OPTIONAL] 15. goad your users with some annoying or witty pop-ups*/
