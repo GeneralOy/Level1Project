@@ -37,7 +37,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 
 	private void makeAlbum() {
 		System.out.println(KeyEvent.VK_I);
-		images.put(new Integer(a, "A.png");
+		images.put(new Integer(KeyEvent.VK_A), "A.png");
 		// *http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_A.png
 		images.put(new Integer(KeyEvent.VK_C), "C.png");
 		// *http://www.wpclipart.com/computer/keyboard_keys/letters/computer_key_C.png
